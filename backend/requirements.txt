@@ -1,10 +1,15 @@
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 python-multipart==0.0.6
+
+# Face Recognition (NO compiling!)
 face-recognition==1.3.0
-dlib-bin
-numpy==1.23.3
+dlib-bin==19.24.6   # <-- MUST specify version to avoid conflicts
+
+numpy==1.23.5       # safest version for dlib+face-recognition
 Pillow==10.1.0
+
+# Other dependencies
 cloudinary==1.36.0
 supabase==2.0.3
 python-dotenv==1.0.0
