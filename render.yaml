@@ -3,5 +3,6 @@ services:
     name: fastapi-backend
     env: docker
     plan: free
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: backend/Dockerfile
     dockerContext: .
+    autoDeploy: true

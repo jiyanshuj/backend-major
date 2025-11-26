@@ -1,37 +1,34 @@
-# Use Python 3.10 slim image as base
+# Use Python 3.10 slim (compatible with dlib & face-recognition)
 FROM python:3.10-slim
 
-# Install system dependencies required for OpenCV and face-recognition
+# Install system dependencies for dlib + face_recognition + OpenCV
 RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    libgomp1 \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    libgthread-2.0-0 \
+    libopenblas-dev \
+    liblapack-dev \
+    libx11-dev \
     libgtk2.0-dev \
+    libgl1 \
     pkg-config \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
 
-# Copy requirements first for better caching
-COPY requirements.txt .
+# Copy only backend folder
+COPY backend/requirements.txt ./requirements.txt
 
 # Install Python dependencies
+RUN pip install --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application
-COPY . .
+# Copy the backend source code ONLY
+COPY backend/ .
 
-# Expose port 8000
+# Expose port
 EXPOSE 8000
 
-# Command to run the application
+# Start FastAPI using uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
