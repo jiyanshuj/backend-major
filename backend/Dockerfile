@@ -14,18 +14,18 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Set working directory in container
 WORKDIR /app
 
-# Copy only backend folder
-COPY backend/requirements.txt ./requirements.txt
+# Copy requirement file from SAME folder (backend/)
+COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the backend source code ONLY
-COPY backend/ .
+# Copy backend code (all .py files)
+COPY . .
 
 # Expose port
 EXPOSE 8000
