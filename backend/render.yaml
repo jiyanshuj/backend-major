@@ -1,8 +1,7 @@
 services:
   - type: web
     name: fastapi-backend
-    env: python
-    runtime: python-3.10
+    env: docker
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "uvicorn main:app --host 0.0.0.0 --port 10000"
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
