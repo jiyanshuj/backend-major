@@ -1,25 +1,11 @@
-# Core Framework
+numpy==1.24.3
+face-recognition==1.2.3
+dlib-bin==19.24.6
+opencv-python-headless==4.8.1.78
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 python-multipart==0.0.6
-
-# Database & Storage
+cloudinary==1.36.0
 supabase==2.3.0
 python-dotenv==1.0.0
-
-# Image Processing & Face Recognition
-Pillow==10.1.0
-numpy==1.24.3
-opencv-python-headless==4.8.1.78
-dlib-bin
-face-recognition==1.2.3
-
-# Cloud Storage
-cloudinary==1.36.0
-
-# HTTP Requests
 requests==2.31.0
-
-# Additional utilities
-pydantic==2.5.0
-typing-extensions==4.8.0
