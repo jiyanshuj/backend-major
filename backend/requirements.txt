@@ -11,7 +11,7 @@ python-dotenv==1.0.0
 Pillow==10.1.0
 numpy==1.24.3
 opencv-python-headless==4.8.1.78
-# dlib==19.24.2  # Installed separately in Dockerfile
+dlib-bin
 face-recognition==1.3.0
 
 # Cloud Storage
