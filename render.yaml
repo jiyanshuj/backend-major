@@ -1,8 +1,38 @@
 services:
   - type: web
-    name: fastapi-backend
+    name: face-recognition-backend
     env: docker
-    plan: free
-    dockerfilePath: backend/Dockerfile
-    dockerContext: .
+    plan: starter # Change to 'free' if you want free tier
+    region: singapore # Choose: oregon, frankfurt, singapore, etc.
+    
+    # Docker build settings - IMPORTANT: Point to backend folder
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    
+    # Environment variables (set these in Render dashboard)
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: PORT
+        value: "8000"
+      - key: PYTHON_VERSION
+        value: "3.10"
+    
+    # Health check endpoint
+    healthCheckPath: /health
+    
+    # Auto-deploy on push
     autoDeploy: true
+    
+    # Build filter - only rebuild when backend changes
+    buildFilter:
+      paths:
+        - backend/**
