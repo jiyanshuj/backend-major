@@ -26,9 +26,6 @@ COPY requirements.txt .
 # Install numpy first
 RUN pip install --no-cache-dir numpy==1.24.3
 
-# Install precompiled dlib (instant, no memory issues)
-RUN pip install --no-cache-dir dlib-bin
-
 # Install everything else
 RUN pip install --no-cache-dir -r requirements.txt
 
