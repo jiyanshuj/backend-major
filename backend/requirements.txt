@@ -2,19 +2,24 @@
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 python-multipart==0.0.6
+
 # Database & Storage
 supabase==2.3.0
 python-dotenv==1.0.0
+
 # Image Processing & Face Recognition
 Pillow==10.1.0
 numpy==1.24.3
 opencv-python-headless==4.8.1.78
-dlib==19.24.2
+# dlib==19.24.2  # Installed separately in Dockerfile
 face-recognition==1.3.0
+
 # Cloud Storage
 cloudinary==1.36.0
+
 # HTTP Requests
 requests==2.31.0
+
 # Additional utilities
 pydantic==2.5.0
 typing-extensions==4.8.0
