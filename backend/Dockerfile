@@ -5,19 +5,16 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
-# Install system dependencies required for face-recognition
+COPY ./backend/requirements.txt /app/requirements.txt
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential cmake \
     libgl1 libglib2.0-0 \
     libjpeg-dev libpng-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY ./backend /app
 
 EXPOSE 8000
 
