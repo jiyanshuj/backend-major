@@ -6,7 +6,7 @@ services:
     region: singapore
 
     dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    dockerContext: .
 
     envVars:
       - key: SUPABASE_URL
