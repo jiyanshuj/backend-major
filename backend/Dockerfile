@@ -5,16 +5,21 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
-COPY ./backend/requirements.txt /app/requirements.txt
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential cmake \
     libgl1 libglib2.0-0 \
     libjpeg-dev libpng-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./backend /app
+# Copy application code
+COPY . .
 
 EXPOSE 8000
 
